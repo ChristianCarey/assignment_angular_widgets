@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Photos</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="images.css" rel="stylesheet">
+    <link href="photos.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="photos.js"></script>
     <script src="photo_app.js"></script>
@@ -22,17 +22,18 @@
         </select>
         <div ng-repeat="hashtag in allHashtags" class="checkbox-container">
           <label>
-            <input type="checkbox" checklist-model="selectedHashtags.selected" checklist-value="hashtag"></input>
+            <input type="checkbox"
+                   value="{{ hashtag }}"
+                   ng-checked="selectedHashtags.indexOf(hashtag) > -1"
+                   ng-click="toggleSelection(hashtag)">
             {{ hashtag | limitTo: 20}}{{ hashtag.length > 20 ? '...' : '' }}
           </label>
-          <br>
         </div>
       </div>
 
       <div class="col-xs-10">
-        <p>{{ selectedHashtags.selected }}</p>
         <div class="row">
-          <div ng-repeat="image in images | filter: { filter: instagramFilter } ">
+          <div ng-repeat="image in images | filter: { filter: instagramFilter } | filter: hashtagFilter ">
             <div class="clearfix" ng-if="$index % 3 == 0"></div>
             <div class="col-sm-4">
               <h3>{{ image.user.username }}</h3>
