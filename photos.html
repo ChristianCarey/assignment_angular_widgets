@@ -14,19 +14,23 @@
     <main class="container">
     <div class="row">
 
-      <div class="col-xs-2">
+      <div class="col-xs-2 pusher"></div>
+      <div class="col-xs-2" id="filter-options">
         <select ng-model="instagramFilter">
           <option value="">All Filters</option>
           <option value="{{ filter | lowercase }}" ng-repeat="filter in instagramFilters">{{ filter }}</option>
         </select>
-        <div ng-model="hastags">
-          <label ng-repeat="hashtag in allHashtags">{{ hashtag }}
-            <input type="checkbox" value="{{ hashtag | lowercase }}"></input>
+        <div ng-repeat="hashtag in allHashtags" class="checkbox-container">
+          <label>
+            <input type="checkbox" checklist-model="selectedHashtags.selected" checklist-value="hashtag"></input>
+            {{ hashtag | limitTo: 20}}{{ hashtag.length > 20 ? '...' : '' }}
           </label>
+          <br>
         </div>
       </div>
 
       <div class="col-xs-10">
+        <p>{{ selectedHashtags.selected }}</p>
         <div class="row">
           <div ng-repeat="image in images | filter: { filter: instagramFilter } ">
             <div class="clearfix" ng-if="$index % 3 == 0"></div>

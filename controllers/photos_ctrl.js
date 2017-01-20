@@ -8,7 +8,10 @@ Photos.controller('PhotosCtrl',
       $scope.instagramFilter;
       $scope.instagramFilters = ['Normal', 'Reyes', 'Lark',
                                  'Valencia', 'Inkwell', 'Ludwig'];
-      $scope.selectedHashtags;
+      $scope.selectedHashtags = {
+        selected: []
+      };
+      
       $scope.allHashtags;
 
       (function(){

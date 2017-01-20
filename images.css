@@ -1,4 +1,8 @@
-
+#filter-options {
+  position: fixed;
+  max-height: 100vh;
+  overflow-y: scroll;
+}
 
 .image-container img {
   max-width: 100%;
