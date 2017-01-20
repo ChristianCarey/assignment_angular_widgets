@@ -8,8 +8,9 @@ Photos.controller('PhotosCtrl',
       $scope.instagramFilter;
       $scope.instagramFilters = ['Normal', 'Reyes', 'Lark',
                                  'Valencia', 'Inkwell', 'Ludwig'];
-      $scope.allHashtags = [];
-      $scope.selectedHashtags = [];
+      $scope.allHashtags = ["None"];
+      $scope.selectedHashtags = ["None"];
+      $scope.offset = 0;
 
       $scope.toggleSelection = function(hashtag){
         var index = $scope.selectedHashtags.indexOf(hashtag);
@@ -21,6 +22,9 @@ Photos.controller('PhotosCtrl',
       };
 
       $scope.hashtagFilter = function(image){
+        if (image.tags.length === 0 && $scope.selectedHashtags.indexOf("None") > -1) {
+          return true;
+        }
         var selectedLength = $scope.selectedHashtags.length;
         var imageTagLength = image.tags.length;
         for (var i = 0; i < imageTagLength; i++){
@@ -32,6 +36,18 @@ Photos.controller('PhotosCtrl',
         }
         return false;
       };
+
+      $scope.prevPage = function() {
+        if ($scope.offset >= 12) {
+          $scope.offset -= 12;
+        }
+      }
+
+      $scope.nextPage = function() {
+        if (!($scope.offset + 12 > $scope.filter.length - 1)) {
+          $scope.offset += 12;
+        }
+      }
 
       (function(){
         $scope.images.forEach(function(image){

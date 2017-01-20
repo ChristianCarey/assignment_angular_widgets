@@ -32,8 +32,14 @@
       </div>
 
       <div class="col-xs-10">
+        <h2>Showing {{ filter.length || '0' }} images.</h2>
+        <button ng-click="prevPage">Prev</button><button ng-click="nextPage">Next</button>
         <div class="row">
-          <div ng-repeat="image in images | filter: { filter: instagramFilter } | filter: hashtagFilter ">
+          <div ng-repeat="image in images | 
+            filter: { filter: instagramFilter } | 
+            filter: hashtagFilter |
+            limitTo: 12 : offset
+            as filter">
             <div class="clearfix" ng-if="$index % 3 == 0"></div>
             <div class="col-sm-4">
               <h3>{{ image.user.username }}</h3>
