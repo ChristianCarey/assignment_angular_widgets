@@ -41,13 +41,13 @@ Photos.controller('PhotosCtrl',
         if ($scope.offset >= 12) {
           $scope.offset -= 12;
         }
-      }
+      };
 
       $scope.nextPage = function() {
-        if (!($scope.offset + 12 > $scope.filter.length - 1)) {
+        if ($scope.filter.length >= 12 && ($scope.images.length - $scope.offset - $scope.filter.length - 1 > 0)) {
           $scope.offset += 12;
         }
-      }
+      };
 
       (function(){
         $scope.images.forEach(function(image){
