@@ -26,4 +26,8 @@ Restaurant.controller('RestaurantCtrl', ['$scope', function($scope){
     $scope.restaurants.splice(index, 1);
   };
 
+  $scope.setSortCriterion = function(criterion) {
+    $scope.criterion = criterion;
+  };
+
 }]);

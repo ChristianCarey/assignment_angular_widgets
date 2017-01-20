@@ -11,16 +11,19 @@
     <div ng-app="Restaurant" ng-controller="RestaurantCtrl">
       <form name="newRestaurant" ng-submit="createRestaurant(newRestaurant.$valid)">
         <div>
-          <label>Image</label>
-          <input type="text" ng-model="image">
+          <label>Image
+            <input type="text" ng-model="image">
+          </label>
         </div>
         <div>
-          <label>Name</label>
-          <input type="text" ng-model="name">
+          <label>Name
+            <input type="text" ng-model="name">
+          </label>
         </div>
         <div>
-          <label>Type of Food</label>
-          <input type="text" ng-model="typeOfFood">
+          <label>Type of Food
+            <input type="text" ng-model="typeOfFood">
+          </label>
         </div>
         <button type="submit">Create Restaurant</button>
       </form>
@@ -28,12 +31,12 @@
       <table>
         <tr>
           <th>Image</th>
-          <th>Name</th>
-          <th>Type of Food</th>
+          <th ng-click="setSortCriterion('name')">Name</th>
+          <th ng-click="setSortCriterion('typeOfFood')">Type of Food</th>
           <th></th>
         </tr>
         <tbody>
-          <tr ng-repeat="restaurant in restaurants | orderBy: 'typeOfFood' ">
+          <tr ng-repeat="restaurant in restaurants | orderBy: criterion | filter: queryString ">
             <td><img ng-src="{{ restaurant.image }}"></td>
             <td>{{ restaurant.name }}</td>
             <td>{{ restaurant.typeOfFood }}</td>
@@ -41,6 +44,12 @@
           </tr>
         </tbody>
       </table>
+
+      <h1>Search Restaurants</h1>
+      <form>
+        <input type="text" ng-model="queryString"></input>
+      </form>
+
     </div>
   </body>
 </html>
