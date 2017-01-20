@@ -1,0 +1,1 @@
+var Photos = angular.module('Photos', []);

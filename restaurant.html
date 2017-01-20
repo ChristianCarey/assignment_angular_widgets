@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Angular Widgets</title>
+    <title>Restaurant</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <script src="app.js"></script>
+    <script src="restaurant.js"></script>
     <script src="controllers/restaurant_ctrl.js"></script>
   </head>
   <body>
@@ -31,12 +31,12 @@
       <table>
         <tr>
           <th>Image</th>
-          <th ng-click="setSortCriterion('name')">Name</th>
-          <th ng-click="setSortCriterion('typeOfFood')">Type of Food</th>
+          <th ng-click="setSortCriterion('name')">Name {{ arrow('name') }}</th>
+          <th ng-click="setSortCriterion('typeOfFood')">Type of Food {{ arrow('typeOfFood') }}</th>
           <th></th>
         </tr>
         <tbody>
-          <tr ng-repeat="restaurant in restaurants | orderBy: criterion | filter: queryString ">
+          <tr ng-repeat="restaurant in restaurants | orderBy: criterion : reverse | filter: queryString ">
             <td><img ng-src="{{ restaurant.image }}"></td>
             <td>{{ restaurant.name }}</td>
             <td>{{ restaurant.typeOfFood }}</td>

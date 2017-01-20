@@ -20,6 +20,7 @@ Restaurant.controller('RestaurantCtrl', ['$scope', function($scope){
     $scope.image = undefined;
     $scope.name = undefined;
     $scope.typeOfFood = undefined;
+    $scope.reverse = false;
   };
 
   $scope.deleteRestaurant = function(index) {
@@ -27,7 +28,18 @@ Restaurant.controller('RestaurantCtrl', ['$scope', function($scope){
   };
 
   $scope.setSortCriterion = function(criterion) {
+    if ($scope.criterion === criterion) {
+      $scope.reverse = !$scope.reverse;
+    } else {
+      $scope.reverse = false;
+    }
     $scope.criterion = criterion;
+  };
+
+  $scope.arrow = function(attr) {
+    if ($scope.criterion === attr) {
+      return $scope.reverse ? "↑" : "↓";
+    }
   };
 
 }]);
