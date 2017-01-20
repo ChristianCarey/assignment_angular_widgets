@@ -10,6 +10,7 @@ Photos.controller('PhotosCtrl',
                                  'Valencia', 'Inkwell', 'Ludwig'];
       $scope.allHashtags = ["None"];
       $scope.selectedHashtags = ["None"];
+      $scope.preFilterCount = 0;
       $scope.offset = 0;
 
       $scope.toggleSelection = function(hashtag){
@@ -21,7 +22,7 @@ Photos.controller('PhotosCtrl',
         }
       };
 
-      $scope.hashtagFilter = function(image){
+      $scope.hashtagFilter = function(image){        
         if (image.tags.length === 0 && $scope.selectedHashtags.indexOf("None") > -1) {
           return true;
         }
@@ -30,6 +31,7 @@ Photos.controller('PhotosCtrl',
         for (var i = 0; i < imageTagLength; i++){
           for (var j = 0; j < selectedLength; j++){
             if (image.tags[i] === $scope.selectedHashtags[j]){
+              $scope.preFilterCount++;
               return true;
             }
           }
@@ -38,13 +40,19 @@ Photos.controller('PhotosCtrl',
       };
 
       $scope.prevPage = function() {
+        // $scope.preFilterCount = 0;
         if ($scope.offset >= 12) {
           $scope.offset -= 12;
         }
       };
 
       $scope.nextPage = function() {
-        if ($scope.filter.length >= 12 && ($scope.images.length - $scope.offset - $scope.filter.length - 1 > 0)) {
+        // if ($scope.filter.length >= 12 && ($scope.images.length - $scope.offset - $scope.filter.length - 1 > 0)) {
+        //   $scope.offset += 12;
+        // }
+        // $scope.preFilterCount = 0;
+        console.log($scope.preFilterCount);
+        if ($scope.offset + 12 < $scope.preFilterCount) {
           $scope.offset += 12;
         }
       };
