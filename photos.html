@@ -7,9 +7,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="photos.js"></script>
     <script src="photo_app.js"></script>
-    <script src="photos_ctrl.js"></script>
+    <script src="controllers/photos_ctrl.js"></script>
   </head>
-  <body>
-  
+  <body ng-app="Photos" ng-controller="PhotosCtrl">
+    <main class="contaienr">
+    <div class="row">
+      <div class="col-xs-10 cols-xs-offset-1">
+
+        <div class="row">
+          <div ng-repeat="image in images">
+            <div class="clearfix" ng-if="$index % 3 == 0"></div>
+            <div class="col-sm-4">
+
+              <h3>{{ image.user.username }}</h3>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </main>
   </body>
 </html>

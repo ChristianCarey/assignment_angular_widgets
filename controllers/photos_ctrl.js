@@ -1,4 +1,10 @@
-Photos.controller('PhotosCtrl', 
-  ['$scope', 'instagramResponse', function($scope, instagramResponse) {
-    $scope.rawFeed = instagramResponse;
-}]);
+
+Photos.controller('PhotosCtrl',
+  ['$scope',
+    'instagramResponse',
+    function($scope, instagramResponse) {
+
+      $scope.images = instagramResponse.data;
+
+    }]);
+
