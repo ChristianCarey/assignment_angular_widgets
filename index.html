@@ -11,6 +11,10 @@
     <div ng-app="Restaurant" ng-controller="RestaurantCtrl">
       <form name="newRestaurant" ng-submit="createRestaurant(newRestaurant.$valid)">
         <div>
+          <label>Image</label>
+          <input type="text" ng-model="image">
+        </div>
+        <div>
           <label>Name</label>
           <input type="text" ng-model="name">
         </div>
@@ -23,13 +27,17 @@
 
       <table>
         <tr>
+          <th>Image</th>
           <th>Name</th>
           <th>Type of Food</th>
+          <th></th>
         </tr>
         <tbody>
-          <tr ng-repeat="restaurant in restaurants">
+          <tr ng-repeat="restaurant in restaurants | orderBy: 'typeOfFood' ">
+            <td><img ng-src="{{ restaurant.image }}"></td>
             <td>{{ restaurant.name }}</td>
             <td>{{ restaurant.typeOfFood }}</td>
+            <td><button ng-click="deleteRestaurant($index)">Delete</button></td>
           </tr>
         </tbody>
       </table>
